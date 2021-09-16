@@ -1,19 +1,21 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.instance_region
 }
 
 resource "aws_instance" "example" {
+
   ami           = var.ami_id
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
   security_groups = [aws_security_group.instance.id]
   subnet_id = var.subnet_id
-	iam_instance_profile = aws_instance_profile.test_profile.arn
+	iam_instance_profile = aws_iam_instance_profile.test_profile.name
   tags = {
     Name = "terraform-example"
   }
 }
 
 resource "aws_security_group" "instance" {
+  vpc_id = var.instance_vpcid
   name = "terraform-example-instance"
   ingress {
     from_port   = 8080
