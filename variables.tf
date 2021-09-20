@@ -1,5 +1,5 @@
 variable "subnet_id" {
-  description = "The AWS region to create things in."
+  description = "The AWS region."
   type = string
   default     = "subnet-00df62d333354c0ce"
 }
