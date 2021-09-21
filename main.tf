@@ -1,5 +1,10 @@
 provider "aws" {
   region = var.instance_region
+  profile = "destination"
+  assume_role {
+    # The role ARN within Account B to AssumeRole into. Created in step 1.
+    role_arn    = "arn:aws:iam::864413304142:role/OrganizationAccountAssumeRole"
+  }
 }
 
 resource "aws_instance" "example" {
