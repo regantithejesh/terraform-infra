@@ -13,7 +13,7 @@ resource "aws_instance" "example" {
   instance_type = var.instance_type
   security_groups = [aws_security_group.instance.id]
   subnet_id = var.subnet_id
-	iam_instance_profile = aws_iam_instance_profile.test_profile.name
+	iam_instance_profile = aws_iam_instance_profile.instance_test_profile.name
   tags = {
     Name = "terraform-example"
   }
@@ -30,8 +30,8 @@ resource "aws_security_group" "instance" {
   }
 }
 
-resource "aws_iam_instance_profile" "test_profile" {
-  name = "test_profile"
+resource "aws_iam_instance_profile" "instance_test_profile" {
+  name = "instance_test_profile"
   role = aws_iam_role.role.name
 }
 resource "aws_iam_role" "role" {
